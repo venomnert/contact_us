@@ -3,6 +3,7 @@ defmodule ContactUsWeb.ClientController do
 
   alias ContactUs.Accounts
   alias ContactUs.Accounts.Client
+  alias Phoenix.LiveView
 
   def index(conn, _params) do
     clients = Accounts.list_clients()
@@ -11,7 +12,8 @@ defmodule ContactUsWeb.ClientController do
 
   def new(conn, _params) do
     changeset = Accounts.change_client(%Client{})
-    render(conn, "new.html", changeset: changeset)
+    LiveView.Controller.live_render(conn, ContactUsWeb.ClientLive.Index, session: %{})
+    # render(conn, "new.html", changeset: changeset)
   end
 
   def create(conn, %{"client" => client_params}) do

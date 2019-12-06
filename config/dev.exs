@@ -17,6 +17,9 @@ config :contact_us, ContactUs.Repo,
 # with webpack to recompile .js and .css sources.
 config :contact_us, ContactUsWeb.Endpoint,
   http: [port: 4000],
+  live_view: [
+    signing_salt: "Kq8z5J1Opc1aSwKO+qMct0cGHWh+ZA/PeEPiKAdXLWOBwSzwPz/jODvJBHyMIlwt"
+  ],
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
