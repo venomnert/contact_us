@@ -11,21 +11,8 @@ defmodule ContactUsWeb.ClientController do
   end
 
   def new(conn, _params) do
-    changeset = Accounts.change_client(%Client{})
     LiveView.Controller.live_render(conn, ContactUsWeb.ClientLive.Index, session: %{})
     # render(conn, "new.html", changeset: changeset)
-  end
-
-  def create(conn, %{"client" => client_params}) do
-    case Accounts.create_client(client_params) do
-      {:ok, client} ->
-        conn
-        |> put_flash(:info, "Client created successfully.")
-        |> redirect(to: Routes.client_path(conn, :show, client))
-
-      {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
-    end
   end
 
   def show(conn, %{"id" => id}) do

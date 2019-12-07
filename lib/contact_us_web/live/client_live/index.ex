@@ -1,12 +1,23 @@
 defmodule ContactUsWeb.ClientLive.Index do
   use Phoenix.LiveView
+
+  alias ContactUsWeb.Router.Helpers, as: Routes
+  alias ContactUsWeb.ClientView
+  alias ContactUs.Accounts
+  alias ContactUs.Accounts.Client
+
   def mount(_session, socket) do
-    {:ok, socket}
+    changeset = Accounts.change_client(%Client{})
+    {:ok, assign(socket, :changeset, changeset)}
   end
 
   def render(assigns) do
-    ~L"""
-    Greetings from Live View
-    """
+    Phoenix.View.render(ClientView, "form.html", assigns)
+  end
+
+  def handle_event("save", args, socket) do
+    IO.inspect(args, label: "VALDIATE DATA")
+
+    {:noreply, socket}
   end
 end

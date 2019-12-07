@@ -1,12 +1,11 @@
 defmodule ContactUsWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :contact_us
 
+  socket "/live", Phoenix.LiveView.Socket
+
   socket "/socket", ContactUsWeb.UserSocket,
     websocket: true,
     longpoll: false
-
-  socket "/live", Phoenix.LiveView.Socket
-
 
   # Serve at "/" the static files from "priv/static" directory.
   #

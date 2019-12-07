@@ -13,6 +13,9 @@ config :contact_us,
 # Configures the endpoint
 config :contact_us, ContactUsWeb.Endpoint,
   url: [host: "localhost"],
+  live_view: [
+    signing_salt: "XApE7hADbc0TUm3/NbIPHzIIK/1iG/lr"
+  ],
   secret_key_base: "pipIAhE1Lyy/f1oaCXd87rKjUIheVqduYivYzAxlVPIVXTJXdrr14Q9eyHMyDKgf",
   render_errors: [view: ContactUsWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: ContactUs.PubSub, adapter: Phoenix.PubSub.PG2]
