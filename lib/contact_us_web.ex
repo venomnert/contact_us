@@ -24,6 +24,7 @@ defmodule ContactUsWeb do
       import Plug.Conn
       import ContactUsWeb.Gettext
       alias ContactUsWeb.Router.Helpers, as: Routes
+      import Phoenix.LiveView.Controller
     end
   end
 
@@ -43,7 +44,9 @@ defmodule ContactUsWeb do
       import ContactUsWeb.Gettext
       alias ContactUsWeb.Router.Helpers, as: Routes
 
-      import Phoenix.LiveView, only: [live_render: 2, live_render: 3]
+      import Phoenix.LiveView,
+      only: [live_render: 2, live_render: 3, live_link: 1, live_link: 2,
+             live_component: 2, live_component: 3, live_component: 4]
     end
   end
 

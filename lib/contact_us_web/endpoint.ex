@@ -1,7 +1,7 @@
 defmodule ContactUsWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :contact_us
 
-  socket "/live", Phoenix.LiveView.Socket
+  socket "/live", Phoenix.LiveView.Socket, websocket: true
 
   socket "/socket", ContactUsWeb.UserSocket,
     websocket: true,
