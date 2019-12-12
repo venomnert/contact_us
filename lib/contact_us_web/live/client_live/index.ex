@@ -45,8 +45,6 @@ defmodule ContactUsWeb.ClientLive.Index do
   end
 
   def handle_event("save", %{"client" => params} = args, socket) do
-    IO.inspect(args, label: "SAVED DATA")
-
     params
     |> Accounts.create_client()
     |> case do
