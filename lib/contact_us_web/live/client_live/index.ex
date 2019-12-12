@@ -10,7 +10,7 @@ defmodule ContactUsWeb.ClientLive.Index do
     IO.inspect(connected?(socket), label: "CONNTECTION STATUS")
     value = %{
       changeset: Accounts.change_client(%Client{}),
-      form_data: %{
+      form_data: %{                # This is the form data to be captured and utilized to create a new client
         "first_name" => "",
         "last_name" => "",
         "email_address" => "",
@@ -27,24 +27,21 @@ defmodule ContactUsWeb.ClientLive.Index do
   end
 
   def handle_event("validate", %{"client" => params} = args, socket) do
+
+    # First determine which input field was updated
     target = args["_target"] |> List.last()
-    form_data = socket.assigns.form_data |> Map.put(target, params[target])
 
-    form_data
-      |> Accounts.validate_form_input()
-      |> case do
-        {:ok, %Ecto.Changeset{} = changeset} ->
-          value = %{changeset: changeset, form_data: form_data}
-                  |> IO.inspect(label: "RESULTS")
+    # Then updated our internal form state with the new input field value
+    form_data = socket.assigns.form_data
+                |> Map.put(target, params[target])
 
-          {:noreply, assign(socket, value)}
+    {_, %Ecto.Changeset{} = changeset} = form_data
+                                          |> Accounts.validate_form_input() # validate our form data
 
-        {:error, %Ecto.Changeset{} = changeset} ->
-          value = %{changeset: changeset, form_data: form_data}
-                  |> IO.inspect(label: "RESULTS")
+      value = %{changeset: changeset, form_data: form_data}
 
-          {:noreply, assign(socket, value)}
-      end
+      # Return the newly updated changeset to our form.
+      {:noreply, assign(socket, value)}
   end
 
   def handle_event("save", %{"client" => params} = args, socket) do

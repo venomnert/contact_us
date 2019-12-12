@@ -27,7 +27,7 @@ defmodule ContactUs.Accounts.Client do
     catch _, _ ->
       {:error, changeset
                 |> Map.put(:action, :insert)
-                |> add_error(:phone_number, "Number be valid number")}
+                |> add_error(:phone_number, "Number must be valid number")}
     end
   end
 end
