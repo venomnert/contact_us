@@ -4,6 +4,7 @@ defmodule ContactUs.Accounts do
   """
 
   import Ecto.Query, warn: false
+  import Ecto.Changeset
   alias ContactUs.Repo
 
   alias ContactUs.Accounts.Client
@@ -100,5 +101,15 @@ defmodule ContactUs.Accounts do
   """
   def change_client(%Client{} = client) do
     Client.changeset(client, %{})
+  end
+
+  def validate_form_input(attrs) do
+    %Client{}
+    |> change(format_form_input(attrs))
+    |> Client.validate_form_input()
+  end
+
+  defp format_form_input(attrs) do
+    for {k,v} <- attrs, into: %{}, do: {String.to_atom(k), v}
   end
 end

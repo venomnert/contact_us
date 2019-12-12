@@ -2,7 +2,6 @@ defmodule ContactUsWeb.ClientController do
   use ContactUsWeb, :controller
 
   alias ContactUs.Accounts
-  alias ContactUs.Accounts.Client
   alias Phoenix.LiveView
 
   def index(conn, _params) do
