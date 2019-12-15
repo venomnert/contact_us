@@ -21,13 +21,17 @@ defmodule ContactUs.Accounts.Client do
   end
 
   def validate_form_input(%Ecto.Changeset{changes: %{phone_number: number}} = changeset) do
-    try do
-      String.to_integer(number)
-      {:ok, changeset}
-    catch _, _ ->
-      {:error, changeset
-                |> Map.put(:action, :insert)
-                |> add_error(:phone_number, "Number must be valid number")}
-    end
+    validate_phone_number(number)
+    |> case do
+        :error ->
+          {:error, changeset
+                  |> Map.put(:action, :insert)
+                  |> add_error(:phone_number, "Number must be valid number")}
+
+        _ -> {:ok, changeset}
+      end
   end
+
+  defp validate_phone_number(""), do: :ok
+  defp validate_phone_number(value), do: Integer.parse(value)
 end
