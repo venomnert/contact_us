@@ -61,8 +61,7 @@ config :contact_us, ContactUsWeb.Endpoint,
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
       ~r"lib/contact_us_web/{live,views}/.*(ex)$",
-      ~r"lib/contact_us_web/templates/.*(eex)$",
-      ~r"lib/lettercounter_web/live/.*(ex)$"
+      ~r"lib/contact_us_web/templates/.*(eex)$"
     ]
   ]
 

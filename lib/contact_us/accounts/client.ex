@@ -7,7 +7,7 @@ defmodule ContactUs.Accounts.Client do
     field :email_address, :string
     field :first_name, :string
     field :last_name, :string
-    field :phone_number, :integer
+    field :phone_number, :string
     field :service, :string
 
     timestamps()
