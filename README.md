@@ -1,4 +1,7 @@
-# ContactUs
+# Contact Us
+A contact us form that was created using phoenix liveview. This allows for real time form validation without the need for Javascript.
+
+# Setup
 
 To start your Phoenix server:
 
